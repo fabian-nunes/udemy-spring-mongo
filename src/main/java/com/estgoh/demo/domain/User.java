@@ -1,13 +1,21 @@
 package com.estgoh.demo.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Document(collection = "user")
 public class User implements Serializable {
 
 
     private static final long serialVersionUID = -732986256006170652L;
-    private String id, name, email;
+
+    @Id
+    private String id;
+
+    private String name, email;
 
     public User() {
 
