@@ -1,5 +1,6 @@
 package com.estgoh.demo.resources;
 
+import com.estgoh.demo.domain.Post;
 import com.estgoh.demo.domain.User;
 import com.estgoh.demo.dto.UserDTO;
 import com.estgoh.demo.services.UserService;
@@ -55,5 +56,11 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
